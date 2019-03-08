@@ -381,7 +381,7 @@ class StackViewLayout extends React.Component {
   }
 
   _isModal() {
-    return this.props.mode === 'modal';
+    return this.props.mode === 'modal' || !!this.props.transitionProps.scene.descriptor.options.modal;
   }
 
   // This only currently applies to the horizontal gesture!
@@ -664,7 +664,7 @@ class StackViewLayout extends React.Component {
     if (this.props.headerMode) {
       return this.props.headerMode;
     }
-    if (Platform.OS === 'android' || this.props.mode === 'modal') {
+    if (Platform.OS === 'android' || this._isModal()) {
       return 'screen';
     }
     return 'float';
